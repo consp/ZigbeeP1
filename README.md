@@ -5,6 +5,19 @@ The reason for doing this is to be able to shut down all normal non-essential ne
 
 I could not find any other device publishing P1 port ([See DSMR standard](https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf)) data I made it myself.
 
+Initial version (yes it's a mess, resistor values are approximate):
+
+<img src="https://github.com/consp/ZigbeeP1/blob/master/img/breadboard_attempt_1.jpg?raw=true" width="400" alt="Wiring mess with random resistors">
+
+
+Hooked up, resulting in the second image, ignore the phase B/C values they are dummy values which are stuck in z2mqtt for now (only have 1 phase):
+
+<img src="https://github.com/consp/ZigbeeP1/blob/master/img/attempt_1_hooked_up.jpg?raw=true" width="400" alt="Sketchy setup #1"><img src="https://github.com/consp/ZigbeeP1/blob/master/img/z2mqtt.jpg?raw=true" alt="Z2MQTT values" width="400"> 
+
+
+
+
+
 ## Requirements
 * [Sparkfun XBee3 Plus thing](https://www.sparkfun.com/products/15435), this was what was available to me and it does micropython.
 * Breadboard or other thing to make some electronics work. As soon as I have my working board printed I'll publish that. Now it's a breadboard mess.
@@ -75,10 +88,10 @@ This repository includes the following:
 * Instruction on how to use this all except for everything already stated. Please do not ask me for "get it work in X" or any question starting with how or why. Knowledgable input will be appreciated but this is a hobby project.
 
 ## Configurable variables in main.py
-`NAME` Sets the name of the device
-`DEBUG` Guess what, it pushes data to the TX port to be reported to the uart
-`ALWAYS_PUBLISH` Always publish configuration and data
-`CYCLE_TIME` Time in seconds between reads/publications from P1 port
+* `NAME` Sets the name of the device
+* `DEBUG` Guess what, it pushes data to the TX port to be reported to the uart
+* `ALWAYS_PUBLISH` Always publish configuration and data
+* `CYCLE_TIME` Time in seconds between reads/publications from P1 port
 
 
 ## Compile the main.py code
