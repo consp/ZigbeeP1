@@ -1,0 +1,46 @@
+From bec7b1f7f0140fc529c6b783e2a810d24fc01e9a Mon Sep 17 00:00:00 2001
+From: consp <dev@null.com>
+Date: Sun, 15 Jan 2023 21:45:35 +0100
+Subject: [PATCH] Added P1 meter from mqtt string if the name ends with P1
+
+---
+ hardware/MQTTAutoDiscover.cpp | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/hardware/MQTTAutoDiscover.cpp b/hardware/MQTTAutoDiscover.cpp
+index 76ba77379..c525e0d50 100644
+--- a/hardware/MQTTAutoDiscover.cpp
++++ b/hardware/MQTTAutoDiscover.cpp
+@@ -1582,9 +1582,17 @@ void MQTTAutoDiscover::GuessSensorTypeValue(const _tMQTTASensor* pSensor, uint8_
+ 	}
+ 	else if (szUnit == "text")
+ 	{
+-		devType = pTypeGeneral;
+-		subType = sTypeTextStatus;
+-		sValue = pSensor->last_value;
++		std::string suffix = "P1";
++		if (pSensor->name.size() >= suffix.size() && pSensor->name.find_last_of(suffix) == pSensor->name.size() - 1)
++		{
++			devType = pTypeP1Power;
++			subType = sTypeP1Power;
++			sValue = pSensor->last_value;
++		} else {
++			devType = pTypeGeneral;
++			subType = sTypeTextStatus;
++			sValue = pSensor->last_value;
++		}
+ 	}
+ 	else if (
+ 		(szUnit == "m³")
+@@ -1619,7 +1627,7 @@ void MQTTAutoDiscover::GuessSensorTypeValue(const _tMQTTASensor* pSensor, uint8_
+ 
+ 			sValue = std_format("%d;%.1f", Rainrate, TotalRain * 1000.0F);
+ 		}
+-		else if (pSensor->icon.find("gas") != std::string::npos)
++		else if (pSensor->icon.find("gas") != std::string::npos || pSensor->name.find("gas") != std::string::npos)
+ 		{
+ 			devType = pTypeP1Gas;
+ 			subType = sTypeP1Gas;
+-- 
+2.35.1
+
