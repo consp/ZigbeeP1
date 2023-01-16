@@ -558,7 +558,7 @@ def process_p1(data, first=False):
         REPORTING_ATTRIBUTES.append(RP_P_MUL)
         REPORTING_ATTRIBUTES.append(RP_P_DIV)
 
-    if RP_L1_P[3] is not None or RP_L2_P is not None or RP_L3_P is not None:
+    if RP_L1_P[3] is not None or RP_L2_P[3] is not None or RP_L3_P[3] is not None:
         p1 = int.from_bytes(RP_L1_P[3], 'little') if RP_L1_P[3] is not None else 0
         p2 = int.from_bytes(RP_L2_P[3], 'little') if RP_L2_P[3] is not None else 0
         p3 = int.from_bytes(RP_L3_P[3], 'little') if RP_L3_P[3] is not None else 0
