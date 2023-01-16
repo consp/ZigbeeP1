@@ -14,9 +14,9 @@ Hooked up, resulting in the second image, ignore the phase B/C values they are d
 
 <img src="https://github.com/consp/ZigbeeP1/blob/master/img/attempt_1_hooked_up.jpg?raw=true" width="400" alt="Sketchy setup #1"><img src="https://github.com/consp/ZigbeeP1/blob/master/img/z2mqtt.jpg?raw=true" alt="Z2MQTT values" width="400"> 
 
-
-
-
+The future might include (aKa I'm working on it):
+* Full schematics, translated from the scribbles and breadboard I did before.
+* A PCB for directly attaching it onto the board.
 
 ## Requirements
 * [Sparkfun XBee3 Plus thing](https://www.sparkfun.com/products/15435), this was what was available to me and it does micropython.
